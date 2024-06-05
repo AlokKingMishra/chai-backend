@@ -21,4 +21,15 @@ app.use(express.urlencoded({extended: true, limit: "16kb"})); //express.urlencod
 app.use(express.static("public")); //express.static() is a middleware that serves static files like images,favicon
 
 app.use(cookieParser()); //cookie parser is a middleware which parses the cookies from the request headers and populates the req.cookies object with the cookie name-value pairs
-export default app;
+
+//Routes import
+
+import userRouter from "./routes/user.route.js";
+
+//routes declaration
+
+app.use("/api/v1/users" , userRouter); //userRouter is a middleware that handles all the routes starting with /user
+
+// http://localhost:8000/api/v1/users/register
+
+export { app }; //exporting the app instance to be used in other files
